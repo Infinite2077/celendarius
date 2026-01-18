@@ -21,5 +21,14 @@
             align-items: center;
             gap: 0.1rem;
         }
+
+        & .iconBar {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            & > svg {
+                font-size: 1.5rem;
+            }
+        }
     }
 }
