@@ -21,6 +21,16 @@
             display: flex;
             flex-direction: column;
         }
+        position: relative;
+        & .closeButton {
+            position: absolute;
+            top: 0.2rem;
+            right: 0.2rem;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            color: white;
+        }
     }
     .error {
         color: red;

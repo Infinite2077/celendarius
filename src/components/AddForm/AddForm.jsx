@@ -1,7 +1,9 @@
-import {useEffect, useState, useRef} from 'react'
+import {useEffect, useState, useRef, useContext} from 'react'
 import style from "./AddForm.module.scss"
+import { BsCalendarX } from "react-icons/bs";
+import { ContextStore } from '../../store/ContextStore';
 
-export default function AddForm() {
+export default function AddForm(props) {
     let [title, setTitle] = useState("")
     let [date, setDate] = useState("")
     let [time, setTime] = useState("")
@@ -32,10 +34,27 @@ export default function AddForm() {
 
     }, [title, date, time]);
 
+    let { addEvent } = useContext(ContextStore)
+
+
+    const handleSubmit = (e) => {
+        if (!correct) return
+        addEvent({title, date, time, color})
+        props.open(false)
+
+    }
+
 
   return (
-    <div className={style.wrapper}>
+    <div className={style.wrapper} 
+        onClick={(e)=>{
+            if(e.target === e.currentTarget) props.open(false)
+        }}
+    >
         <div className={style.inner}>
+            <button className={style.closeButton} onClick={()=>props.open(false)}>
+                <BsCalendarX />
+            </button>
             <h1>Додати подію</h1>
             <section>
                 <label htmlFor="title">Назва події</label>
@@ -66,7 +85,7 @@ export default function AddForm() {
                 onChange={(e)=> setColor(e.target.value)}
                 />
             </section>
-            <button>Додати подію</button>
+            <button disabled={!correct} onClick={handleSubmit}>Додати подію</button>
         </div>
     </div>
   )
