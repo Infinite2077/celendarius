@@ -1,6 +1,7 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import style from "./Header.module.scss"
+import { NavLink } from 'react-router-dom'
 // import { IoCalendar } from "react-icons/fa6";
 // import { FaCalendarAlt } from "react-icons/fa";
 // import { FaCalendarDay } from "react-icons/lia";
@@ -12,10 +13,10 @@ function Header(props) {
       
       <h3>Calendarious of Master Planious</h3>
       <nav>
-        <a href="" className={style.link}>Main</a>
-        <a href="" className={style.link}>Month</a>
-        <a href="" className={style.link}>Week</a>
-        <a href="" className={style.link}>Day</a>
+        <NavLink to="/" className={style.link}>Main</NavLink>
+        <NavLink to="/" className={style.link}>Month</NavLink>
+        <NavLink to="/week" className={style.link}>Week</NavLink>
+        <NavLink to="/day" className={style.link}>Day</NavLink>
 
       </nav>
     </header>
