@@ -1,0 +1,41 @@
+.wrapper {
+    & table {
+        border: 1px solid black;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 600px;
+        text-align: center;
+        border-collapse: collapse;
+        & td, th {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        & th {
+            background-color: rgba($color: #0000, $alpha: 0.3);
+        }
+        & td {
+            background-color: white;
+            position: relative;
+            padding: 2rem 0.5rem;
+            .number {
+                position: absolute;
+                top: 5px;
+                left: 5px;
+            }
+            & > button {
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                max-width: 100px;
+                
+            }
+        }
+    }
+
+    & .events {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+}

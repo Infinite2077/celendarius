@@ -13,10 +13,10 @@ function Header(props) {
       
       <h3>Calendarious of Master Planious</h3>
       <nav>
-        <NavLink to="/" className={style.link}>Main</NavLink>
-        <NavLink to="/" className={style.link}>Month</NavLink>
-        <NavLink to="/week" className={style.link}>Week</NavLink>
-        <NavLink to="/day" className={style.link}>Day</NavLink>
+        <NavLink to="/" className={({isActive})=> isActive ? style.active : style.link}>Main</NavLink>
+        <NavLink to="/" className={({isActive})=> isActive ? style.active : style.link}>Month</NavLink>
+        <NavLink to="/week" className={({isActive})=> isActive ? style.active : style.link}>Week</NavLink>
+        <NavLink to="/day" className={({isActive})=> isActive ? style.active : style.link}>Day</NavLink>
 
       </nav>
     </header>
