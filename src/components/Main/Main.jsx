@@ -4,6 +4,7 @@ import MCalendar from '../MCalendar/MCalendar'
 import { Route, Routes } from 'react-router-dom'
 import WCalendar from '../WCalendar/WCalendar'
 import DCalendar from '../DCalendar/DCalendar'
+import Valentine from '../Valentine/Valentine'
 
 export default function Main() {
   return (
@@ -13,6 +14,8 @@ export default function Main() {
         <Route path="/" element = {<MCalendar/>}/>
         <Route path="/week" element = {<WCalendar/>}/>
         <Route path="/day" element = {<DCalendar/>}/>
+         <Route path="/valentine" element = {<Valentine/>}/>
+        
         
         
       </Routes>
