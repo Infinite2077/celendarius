@@ -5,6 +5,8 @@ import { Route, Routes } from 'react-router-dom'
 import WCalendar from '../WCalendar/WCalendar'
 import DCalendar from '../DCalendar/DCalendar'
 import Valentine from '../Valentine/Valentine'
+import Login from "../Auth/Login"
+import Register from "../Auth/Register"
 
 export default function Main() {
   return (
@@ -15,6 +17,8 @@ export default function Main() {
         <Route path="/week" element = {<WCalendar/>}/>
         <Route path="/day" element = {<DCalendar/>}/>
          <Route path="/valentine" element = {<Valentine/>}/>
+         <Route path="/login" element = {<Login/>}/>
+         <Route path="/register" element = {<Register/>}/>
         
         
         
