@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react'
 import style from "./WCalendar.module.scss"
 import { getCalendarDatesInWeek, getMinutes} from '../../utils/calenductor';
 import {ContextStore} from "../../store/ContextStore"
+import { useSelector } from 'react-redux';
+
 
 export default function WCalendar() {
     const [currentDate, setCurrentDate] = useState(new Date())
@@ -9,10 +11,9 @@ export default function WCalendar() {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
     const dates = getCalendarDatesInWeek(year , month, currentDate)
-    console.log(dates)
 
-    let {events} = useContext(ContextStore)
-    console.log(events)
+    let events = useSelector(state=>state.events.events)
+
 
   return (
     <div className={style.wrapper}>
