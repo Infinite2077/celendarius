@@ -1,6 +1,9 @@
 import React from "react";
 import style from "./Auth.module.scss";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../store/AuthReducer";
+import {useNavigate} from "react-rouder-dom";
 
 export default function Register() {
     const {
@@ -9,10 +12,32 @@ export default function Register() {
         formState: { errors },
         watch,
     } = useForm();
+    let navigate = useNavigate()
+
+    useEffect(()=>{
+        if(error){
+            alert (error)
+        }
+        if(token){
+
+        }
+    })
+
+    const { loading, error, token } = useSelector((state) => state.auth);
+    let dispatch = useDispatch()
+
+    useEffect(()=>{
+        if(error){
+            alert (error)
+        }
+        if(token){
+            navigate ("/")
+        }
+    }, [token, error])
 
     return (
         <div className={style.wrapper}>
-            <form onSubmit={handleSubmit((data)=>console.log(data))}>
+            <form onSubmit={handleSubmit((data)=> dispatch(registerUser (data)))}>
                 <h1>Register</h1>
                 <label htmlFor="login">Login</label>
                 <input

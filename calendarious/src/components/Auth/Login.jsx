@@ -1,8 +1,13 @@
 import React from "react";
 import style from "./Auth.module.scss";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Login() {
+    let dispatch = useDispatch()
+    let { loading, token, error } = useSelector(state=> state.auth)
+
+
     const {
         register,
         handleSubmit,
@@ -12,7 +17,7 @@ export default function Login() {
 
     return (
         <div className={style.wrapper}>
-            <form onSubmit={handleSubmit((data)=>console.log(data))}>
+            <form onSubmit={handleSubmit((data)=>dispatch(loginUser()))}>
                 <h1>Login</h1>
                 <label htmlFor="email">Email</label>
                 <input
