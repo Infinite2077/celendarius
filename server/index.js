@@ -54,17 +54,27 @@ const authenticateToke = (req, res, next) => {
     let authHeader = req.headers.authorization;
     let token = authHeader && authHeader.split(" ")[1]
 
-    if(!token) return res.status(403).json({error: "Access denied"}) 
-    jwt.verify(token, process.env.SECRET, (err, user)=>{
-        if (err) return res.status(403).json({error: "Access denied"})
-            req.user = user
+    if (!token) return res.status(403).json({ error: "Access denied" })
+    jwt.verify(token, process.env.SECRET, (err, user) => {
+        if (err) return res.status(403).json({ error: "Access denied" })
+        req.user = user
         next()
     })
 }
 
 
-app.get("/protected", authenticateToke, (req, res)=>{
-    res.json({data: req?.user.id})
+app.get("/protected", authenticateToke, async (req, res) => {
+    res.json({ data: req?.user.id })
+})
+
+app.post("/add", authenticateToke, async (req, res) => {
+    console.log(req.body)
+    let user_id = req.user.id
+    console.log(user_id)
+    await db.query("INSERT INTO `event`(user_id, title, date, time, color) VALUES (?, ?, ?, ?, ?)",
+        [user_id, req.body.title, req.body.date, req.body.time, req.body.color])
+    let result = await db.query("SELECT * FROM event WHERE user_id = ?", [user_id])
+    req.json(result[0])
 })
 
 app.listen(3000, () => console.log("Server ON!"))
